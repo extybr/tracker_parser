@@ -3,6 +3,10 @@
 
 source ./text-color.sh
 
+host=$(curl -s --location 'https://kinobox.tv/go/demo' | \
+       grep "location.href = '" | \
+       sed "s/location.href = '//g ; s/...$//g" | awk '{print $1}')
+
 if [ "$#" -eq 0 ]; then
   echo -e " ${yellow}Примеры запуска:\n"\
           "${yellow}Поиск по названию:"\
@@ -28,7 +32,7 @@ if [[ "${request}" ]]; then
       break
     else echo -e "${blue}${title}${normal}"\
     "(${violet}${alternativeTitle}${normal} / ${yellow}${year}${normal}):"\
-    "${bold}https://kinomix.web.app/#${white}${id}${normal}"
+    "${bold}${host}/film/${white}${id}${normal}"
     fi
   done
 fi
