@@ -9,10 +9,10 @@ host=$(curl -s --location 'https://kinobox.tv/go/demo' | \
 
 for type in film series; do 
   echo -e "${red}Популярные ${type}"
-  title_film=$(curl -s "https://kinobox.tv/api/films/popular?type=${type}")
+  title_film=$(curl -s "https://kp.kinobox.tv/films/popular?${type}=true")
   for number in {0..49}; do 
-    title=$(echo -n "${title_film}" | jq -r ".[$number].title")
-    id=$(echo -n "${title_film}" | jq -r ".[$number].id")
+    title=$(echo -n "${title_film}" | jq -r ".data.films.[$number].title.russian")
+    id=$(echo -n "${title_film}" | jq -r ".data.films.[$number].id")
     echo -e "${blue}${title}: ${violet}${host}/film/${id}"
     done
   done

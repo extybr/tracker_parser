@@ -17,7 +17,7 @@ blue = "\033[36m"
 normal = "\033[0m"
 
 proxy = subprocess.getoutput('./proxy.sh')
-number = 1867
+number = 1872
 
 
 def fail() -> None:
@@ -29,8 +29,8 @@ def help_message() -> str:
     return (f' {yellow}Примеры запуска:\n'
             f' {yellow}Справка: {blue}./pornolab.py help\n'
             f' {yellow}Без прокси: {blue}./pornolab.py 0\n'
-            f' {yellow}Сайтрипы 2024 (HD Video) / SiteRip`s 2024 (HD Video):'
-            f' {blue}./pornolab.py 1867\n {yellow}Эротические студии Разное /'
+            f' {yellow}Сайтрипы 2025 (HD Video) / SiteRip`s 2025 (HD Video):'
+            f' {blue}./pornolab.py 1872\n {yellow}Эротические студии Разное /'
             f' Erotic Picture Gallery (various): {blue}./pornolab.py 883\n'
             f' {yellow}MetArt & MetModels: {blue}./pornolab.py 1726{normal}')
 

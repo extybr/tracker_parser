@@ -29,7 +29,7 @@ def help_message() -> str:
     return (f' {yellow}Примеры запуска:\n'
             f' {yellow}Справка: {blue}./rutracker.py -h\n'
             f' {yellow}Без прокси: {blue}./rutracker.py 0\n'
-            f' {yellow}Фильмы 2024 года: {blue}./rutracker.py 252\n'
+            f' {yellow}Фильмы 2025 года: {blue}./rutracker.py 252\n'
             f' {yellow}Азиатские фильмы: {blue}./rutracker.py 934\n'
             f' {yellow}Индийское кино: {blue}./rutracker.py 505\n'
             f' {yellow}Новинки и сериалы в стадии показа'

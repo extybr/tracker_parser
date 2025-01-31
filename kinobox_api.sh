@@ -20,14 +20,14 @@ if [ "$#" -ne 1 ]
 fi
 
 film=$(./url_coder.py "encoder" "$1" | sed 's/ /%20/g')
-url="https://kinobox.tv/api/films/search/?title=${film}"
+url="https://kp.kinobox.tv/films/search/?query=${film}"
 request=$(curl -s "${url}")
 if [[ "${request}" ]]; then
   for item in {0..100}; do
-    title=$(echo "${request}" | jq -r ".[$item].title")
-    alternativeTitle=$(echo "${request}" | jq -r ".[$item].alternativeTitle")
-    id=$(echo "${request}" | jq -r ".[$item].id")
-    year=$(echo "${request}" | jq -r ".[$item].year")
+    title=$(echo "${request}" | jq -r ".data.films.[$item].title.original")
+    alternativeTitle=$(echo "${request}" | jq -r ".data.films.[$item].title.russian")
+    id=$(echo "${request}" | jq -r ".data.films.[$item].id")
+    year=$(echo "${request}" | jq -r ".data.films.[$item].posterUrl.year")
     if [[ "${title}" = 'null' ]]; then
       break
     else echo -e "${blue}${title}${normal}"\
