@@ -27,7 +27,7 @@ if [[ "${request}" ]]; then
     title=$(echo "${request}" | jq -r ".data.films.[$item].title.original")
     alternativeTitle=$(echo "${request}" | jq -r ".data.films.[$item].title.russian")
     id=$(echo "${request}" | jq -r ".data.films.[$item].id")
-    year=$(echo "${request}" | jq -r ".data.films.[$item].posterUrl.year")
+    year=$(echo "${request}" | jq -r ".data.films.[$item].year")
     if [[ "${title}" = 'null' ]]; then
       break
     else echo -e "${blue}${title}${normal}"\

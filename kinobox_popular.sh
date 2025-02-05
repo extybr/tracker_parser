@@ -9,13 +9,10 @@ host=$(curl -s --location 'https://kinobox.tv/go/demo' | \
        awk '{print $1}' | sed 's/\//\\\//g')
 host="${host}\/film\/"
 
-popular=$(curl -s "https://kp.kinobox.tv/films/popular")
-
-for type in Film Series; do
+for type in films series; do
+  popular=$(curl -s "https://kp.kinobox.tv/films/popular?${type}=true&released=true&page=1")
   echo -e "${red}Популярные ${type}${normal}"
-  title=$(echo -n "${popular}" | \
-          jq -r ".data.films.[] | select(.type == \"${type}\") | .title.russian, .id" | \
-          sed "N;s/\n/ 👉 ${host}/")
+  title=$(echo -n "${popular}" | jq -r ".data.films.[] | .title.russian, .id" | sed "N;s/\n/ 👉 ${host}/")
   echo -e "${blue}${title}${normal}"
 done
 
