@@ -1,4 +1,4 @@
 # tracker_parser
 
-<img src="preview.png" height="200">
+<img src="preview.png" height="250">
 

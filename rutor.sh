@@ -4,6 +4,7 @@
 # $> ./rutor.sh 1                                            #
 # $> ./rutor.sh 1 Marvel                                     #
 # $> ./rutor.sh 0 'Resident evil'                            #
+# $> ./rutor.sh 1 s                                          #
 # $> ./rutor.sh 0 'http://rutor.info/torrent/999364'         #
 # $> ./rutor.sh 1 'http://tracker.rutor.is/torrent/999364'   #
 ##############################################################
@@ -12,11 +13,14 @@ source ./text-color.sh
 
 path='top'
 proxy=''
+titles=60
 
 if [ "$#" -eq 0 ]; then
   echo -e " ${yellow}Примеры запуска:\n"\
           "${yellow}Поиск по названию: ${blue}./rutor.sh 1 'Resident evil'\n"\
           "${yellow}Поиск по названию без прокси: ${blue}./rutor.sh 0 Marvel\n"\
+          "${yellow}Сериалы по дате убывания (последние вышедшие вверху): "\
+          "${blue}./rutor.sh 1 s\n"\
           "${yellow}Поиск магнет-ссылки по url-ссылке:${blue}"\
           "./rutor.sh 1 'http://rutor.info/torrent/999364'\n${normal}"
   exit 0
@@ -31,6 +35,11 @@ if [ "$1" = '1' ]; then
   source ./proxy.sh 1> /dev/null
 fi
 
+if [ "$#" -eq 2 ] && [ "$2" = 's' ]; then
+  path='seriali'
+  titles=200
+fi
+
 rutor() {
 request=$(curl -s ${proxy} --max-time 5 "http://rutor.info/${path}")
 }
@@ -43,7 +52,7 @@ if rutor; then
   sed "s/\">/\\n/g" | tail -n +7)
 
   IFS='|'
-  result=$(echo "${response}" | head -n 60)
+  result=$(echo "${response}" | head -n "${titles}")
 
   IFS=$'\n'
   count=1
