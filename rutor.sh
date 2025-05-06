@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ##############################################################
 # $> ./rutor.sh                                              #
 # $> ./rutor.sh 1                                            #
@@ -15,12 +15,14 @@ path='top'
 proxy=''
 titles=60
 
-if [ "$#" -eq 0 ]; then
-  echo -e " ${yellow}Примеры запуска:\n"\
+if [ "$#" -eq 0 ] || ( [ "$#" -eq 1 ] && [ "$1" = 'h' ] ); then
+  echo -e "${yellow}\n Примеры запуска:\n"\
           "${yellow}Поиск по названию: ${blue}./rutor.sh 1 'Resident evil'\n"\
           "${yellow}Поиск по названию без прокси: ${blue}./rutor.sh 0 Marvel\n"\
           "${yellow}Сериалы по дате убывания (последние вышедшие вверху): "\
           "${blue}./rutor.sh 1 s\n"\
+          "${yellow}Сериалы по дате убывания (последние вышедшие за сегодня): "\
+          "${blue}./rutor.sh 1 sd\n"\
           "${yellow}Поиск магнет-ссылки по url-ссылке:${blue}"\
           "./rutor.sh 1 'http://rutor.info/torrent/999364'\n${normal}"
   exit 0
@@ -38,6 +40,13 @@ fi
 if [ "$#" -eq 2 ] && [ "$2" = 's' ]; then
   path='seriali'
   titles=200
+fi
+
+if [ "$#" -eq 2 ] && [ "$2" = 'sd' ]; then
+  path='seriali'
+  title_day=$(curl -s ${proxy} --max-time 5 "http://rutor.info/${path}" | \
+              grep -oP "<td>$(date '+%d')[^<]+" | wc -l)
+  titles=$(( "${title_day}" * 2 ))
 fi
 
 rutor() {
