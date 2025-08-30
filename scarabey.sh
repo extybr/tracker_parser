@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 #######################
 # $> ./scarabey.sh    #
 #######################
 
 source ./text-color.sh
 
-source ./proxy.sh 1> /dev/null
+# source ./proxy.sh 1> /dev/null
 
 # URL страницы канала
 CHANNEL_URL="https://scarfilm.org/novinki-kino-v-seti/"
@@ -15,7 +15,7 @@ NUM_URLS=18
 
 # Функция загрузки HTML-страницы
 get_html() {
-  html=$(curl -s ${proxy} --location --max-time 3 "${CHANNEL_URL}")
+  html=$(curl -s --location --max-time 3 "${CHANNEL_URL}")
 }
 
 # Функция для получения последних видео из HTML-страницы
