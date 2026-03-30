@@ -29,8 +29,8 @@ def help_message() -> str:
     return (f' {yellow}Примеры запуска:\n'
             f' {yellow}Справка: {blue}./pornolab.py help\n'
             f' {yellow}Без прокси: {blue}./pornolab.py 0\n'
-            f' {yellow}Сайтрипы 2025 (HD Video) / SiteRip`s 2025 (HD Video):'
-            f' {blue}./pornolab.py 1872\n {yellow}Эротические студии Разное /'
+            f' {yellow}Сайтрипы 2026 (HD Video) / SiteRip`s 2026 (HD Video):'
+            f' {blue}./pornolab.py 1875\n {yellow}Эротические студии Разное /'
             f' Erotic Picture Gallery (various): {blue}./pornolab.py 883\n'
             f' {yellow}MetArt & MetModels: {blue}./pornolab.py 1726{normal}')
 

@@ -31,10 +31,6 @@ for file in $(ls "${script_dir}"); do
   && ! [ "${file}" = 'README.md' ] \
   && ! [ "${file}" = 'proxy.sh' ] \
   && ! [ "${file}" = 'text-color.sh' ] \
-  && ! [ "${file}" = 'rutracker.py' ] \
-  && ! [ "${file}" = 'rutracker-magnet.sh' ] \
-  && ! [ "${file}" = 'lostfilm_new_release.sh' ] \
-  && ! [ "${file}" = 'lostfilm_new_series.sh' ] \
   && ! [ "${file}" = 'url_coder.py' ]; then
     array+=("${file}\n")
   fi

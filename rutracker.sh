@@ -1,8 +1,7 @@
 #!/bin/bash
 ##############################################################################
 # $> ./rutracker.sh 1                                                        #
-# $> ./rutracker.sh 1 help                                                   #
-# $> ./rutracker.sh 1 252                                                    #
+# $> ./rutracker.sh 252                                                      #
 # $> ./rutracker.sh 1 'https://rutracker.org/forum/viewtopic.php?t=6549631'  #
 # $> ./rutracker.sh 0 'https://rutracker.org/forum/viewtopic.php?t=6549631'  #
 ##############################################################################
@@ -23,7 +22,7 @@ function magnet {
 
     url="$2"
 
-    user_agent='Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0'
+    user_agent='Mozilla/5.0 (X11; Linux x86_64; rv:149.0) Gecko/20100101 Firefox/149.0'
     request=$(curl -s --location -A "${user_agent}" ${proxy} --max-time 10 "${url}")
 
     result=$(echo "${request}" | grep -oP 'magnet[^<]+net"' | sed 's/net"/net/g')

@@ -15,7 +15,7 @@ NUM_URLS=18
 
 # Функция загрузки HTML-страницы
 get_html() {
-  html=$(curl -s --location --max-time 3 "${CHANNEL_URL}")
+  html=$(curl -s --location --max-time 5 "${CHANNEL_URL}")
 }
 
 # Функция для получения последних видео из HTML-страницы

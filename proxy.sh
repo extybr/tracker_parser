@@ -1,7 +1,7 @@
 #!/bin/bash
 
 addr_proxy() {
-address=$(curl -s --location --max-time 3 'https://p.thenewone.lol:8443/proxy.pac' | \
+address=$(curl -s --location --max-time 5 'https://p.thenewone.lol:8443/proxy.pac' | \
 grep 'return "PROXY' | sed 's/; DIRECT";//g ; s/    return "PROXY //g')
 proxy="--proxy ${address}"
 if ! [ "${address}" ] || [ "$?" = '124' ]; then

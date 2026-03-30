@@ -91,7 +91,8 @@ if command -v xclip > /dev/null
 fi
 }
 
-if [[ ${search%'rutor'*} = 'http://' ]] || [[ ${search%'tracker.rutor'*} = 'http://' ]]
+if [[ ${search%'rutor'*} = 'http://' ]] || [[ ${search%'rutor'*} = 'https://' ]] \
+  || [[ ${search%'tracker.rutor'*} = 'http://' ]] || [[ ${search%'tracker.rutor'*} = 'https://' ]]
   then magnet "$2"
   else main
 fi

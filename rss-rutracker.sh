@@ -1,6 +1,5 @@
 #!/bin/bash
 ##################################
-# $> ./rss-rutracker.sh 1        #
 # $> ./rss-rutracker.sh 1 252    #
 ##################################
 
@@ -9,8 +8,9 @@ if [ "$#" -ne 2 ]; then
 fi
 
 NUMBER="$2"
-SOURCE="http://feed.rutracker.cc/atom/f/$NUMBER.atom"
-PROXY="--proxy 127.0.0.1:1080"
+SOURCE="https://feed.rutracker.cc/atom/f/$NUMBER.atom"
+source ./proxy.sh 1> /dev/null
+PROXY="${proxy}"
 
 function rss {
   curl -s $PROXY $SOURCE | \

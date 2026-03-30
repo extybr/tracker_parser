@@ -12,8 +12,8 @@ tag3='<\/title>'
 tag4='<\/link>'
 
 html=$(curl -s ${proxy} ${src})
-rss=$(echo "${html}" | iconv -f cp1251 | grep "${tag1}" -A 1 | tail +6 | \
-      sed "4~6d;5~6d;6~6d ; s/${tag1}/\\${blue}/g ; s/${tag2}/\\${violet}/g ; s/${tag3}//g ; s/${tag4}//g ; s/--//g" )
+rss=$(echo "${html}" | grep "${tag1}" -A 3 | tail +5 | \
+      sed "2~5d;3~5d ; s/${tag1}/\\${blue}/g ; s/${tag2}/\\${violet}/g ; s/${tag3}//g ; s/${tag4}//g ; s/--//g" )
 
 echo -e "${rss}${normal}"
 
