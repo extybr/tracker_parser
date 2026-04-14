@@ -5,7 +5,7 @@
 # $> ./rutor.sh 1 Marvel                                     #
 # $> ./rutor.sh 0 'Resident evil'                            #
 # $> ./rutor.sh 1 s                                          #
-# $> ./rutor.sh 0 'http://rutor.info/torrent/999364'         #
+# $> ./rutor.sh 0 'https://rutor.info/torrent/999364'        #
 # $> ./rutor.sh 1 'http://tracker.rutor.is/torrent/999364'   #
 ##############################################################
 
@@ -24,7 +24,7 @@ if [ "$#" -eq 0 ] || ( [ "$#" -eq 1 ] && [ "$1" = 'h' ] ); then
           "${yellow}Сериалы по дате убывания (последние вышедшие за сегодня): "\
           "${blue}./rutor.sh 1 sd\n"\
           "${yellow}Поиск магнет-ссылки по url-ссылке:${blue}"\
-          "./rutor.sh 1 'http://rutor.info/torrent/999364'\n${normal}"
+          "./rutor.sh 1 'https://rutor.info/torrent/999364'\n${normal}"
   exit 0
 fi
 
@@ -44,20 +44,20 @@ fi
 
 if [ "$#" -eq 2 ] && [ "$2" = 'sd' ]; then
   path='seriali'
-  title_day=$(curl -s ${proxy} --max-time 5 "http://rutor.info/${path}" | \
+  title_day=$(curl -s ${proxy} --max-time 5 "https://rutor.info/${path}" | \
               grep -oP "<td>$(date '+%d')[^<]+" | wc -l)
   titles=$(( "${title_day}" * 2 ))
 fi
 
 rutor() {
-request=$(curl -s ${proxy} --max-time 5 "http://rutor.info/${path}")
+  request=$(curl -s ${proxy} --max-time 5 "https://rutor.info/${path}")
 }
 
 main() {
 
 if rutor; then
   response=$(echo "${request}" | grep -oP '<a href="/torrent/[^<]+' | \
-  sed 's/<a href="/http:\/\/rutor.info/g' | \
+  sed 's/<a href="/https:\/\/rutor.info/g' | \
   sed "s/\">/\\n/g" | tail -n +7)
 
   IFS='|'
@@ -82,13 +82,13 @@ fi
 }
 
 magnet() {
-url="$1"
-request=$(curl -s ${proxy} --max-time 5 "${url}" | grep -oP 'magnet[^<]+ce' | grep amp)
-echo -e "\n${blue}${request}${normal}\n"
-if command -v xclip > /dev/null
-  then echo "${request}" | xclip -sel clip
+  url="$1"
+  request=$(curl -s ${proxy} --max-time 5 "${url}" | grep -oP 'magnet[^<]+ce' | grep amp)
+  echo -e "\n${blue}${request}${normal}\n"
+  if command -v xclip > /dev/null
+    then echo "${request}" | xclip -sel clip
   else echo -e "xclip: ${red}not found${normal}"
-fi
+  fi
 }
 
 if [[ ${search%'rutor'*} = 'http://' ]] || [[ ${search%'rutor'*} = 'https://' ]] \
